@@ -2,3 +2,17 @@
     background-image: url('../images/pexels-photo-216640.jpeg');
     opacity: 0.75;
 }
+
+body {
+    font-family: 'IM Fell English', serif;
+    text-shadow: 0 0 2px red;
+}
+
+h1 {
+    font-size: 76px;
+    text-shadow: 0 1px 5px red;
+}
+.fa-fire {
+    font-size: 16px;
+    letter-spacing: 4px;
+}
