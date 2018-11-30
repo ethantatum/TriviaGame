@@ -11,6 +11,8 @@ $(document).ready(function() {
             d: `Thomas Jefferson`
             },
             correctAnswer: `b`,
+            rightAnswerText: ``,
+            dumbAnswerText: ``,
             picture: `../images/civil-war.jpg`
         },
         {
@@ -22,6 +24,8 @@ $(document).ready(function() {
             d: `Indira Gandhi`
             },
             correctAnswer: `c`,
+            rightAnswerText: ``,
+            dumbAnswerText: ``,
             picture: `../images/indian-leader.jpg`
         },
         {
@@ -33,6 +37,8 @@ $(document).ready(function() {
             d: `The Beatles`
             },
             correctAnswer: `d`,
+            rightAnswerText: ``,
+            dumbAnswerText: ``,
             picture: `../images/ed-sullivan.jpg`
         },
         {
@@ -44,6 +50,8 @@ $(document).ready(function() {
             d: `Canada`
             },
             correctAnswer: `a`,
+            rightAnswerText: ``,
+            dumbAnswerText: ``,
             picture: `../images/freedom.jpg`
         },
         {
@@ -55,6 +63,8 @@ $(document).ready(function() {
             d: `Minnesota`
             },
             correctAnswer: `c`,
+            rightAnswerText: ``,
+            dumbAnswerText: ``,
             picture: `../images/hanging-chad.jpg`
         },
         {
@@ -66,6 +76,8 @@ $(document).ready(function() {
             d: `Dominique Wilkins`
             },
             correctAnswer: `c`,
+            rightAnswerText: ``,
+            dumbAnswerText: ``,
             picture: `../images/announcement.jpg`
         },
         {
@@ -77,6 +89,8 @@ $(document).ready(function() {
             d: `Charlie Chaplin`
             },
             correctAnswer: `a`,
+            rightAnswerText: ``,
+            dumbAnswerText: ``,
             picture: `../images/jack-ruby.jpg`
         },
         {
@@ -88,6 +102,8 @@ $(document).ready(function() {
             d: `Yalta Conference`
             },
             correctAnswer: `d`,
+            rightAnswerText: ``,
+            dumbAnswerText: ``,
             picture: `../images/big-three.jpg`
         },
         {
@@ -99,6 +115,8 @@ $(document).ready(function() {
             d: `Idi Amin`
             },
             correctAnswer: `b`,
+            rightAnswerText: ``,
+            dumbAnswerText: ``,
             picture: `../images/sunglasses.jpg`
         },
         {
@@ -110,6 +128,8 @@ $(document).ready(function() {
             d: `Myanmar`
             },
             correctAnswer: `a`,
+            rightAnswerText: ``,
+            dumbAnswerText: ``,
             picture: `../images/tank-man.jpg`
         },
     ];
