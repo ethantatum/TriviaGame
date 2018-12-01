@@ -1,6 +1,7 @@
 $(document).ready(function() {
     // VARIABLES
     // ==================================================================================
+    // const newGameButton = $(`$new-game`);
     const questionBank = [
         {
             question: `Which U.S. president was in office for the majority of the Civil War?`,
@@ -38,7 +39,7 @@ $(document).ready(function() {
             },
             correctAnswer: `d`,
             rightAnswerText: ``,
-            dumbAnswerText: `You're off by about 45 years...although The Beatles were a boy band!`,
+            dumbAnswerText: `You're off by about 45 years...although The Beatles WERE a boy band!`,
             picture: `assets/images/ed-sullivan.jpg`
         },
         {
@@ -135,24 +136,33 @@ $(document).ready(function() {
     ];
 
     let currentQuestion = 0;
+    let rightAnswers = 0;
+    let wrongAnswers = 0;
 
     // FUNCTIONS
     // ==================================================================================
 
+    $(`#new-game`).on(`click`, function() {
+        
+    }); 
+    
     const thirtySeconds = setTimeout(function() {
-
+        
     }, 30000);
-
+    
     let generateQuestion = function(index) {
         $(`#question`).text(questionBank[currentQuestion].question);
-        currentQuestion++;
         $(`#answers`).append(`<h2 class="choices" id="choice-one">${questionBank[currentQuestion].answers.a}</h2>`);
         $(`#answers`).append(`<h2 class="choices" id="choice-one">${questionBank[currentQuestion].answers.b}</h2>`);
         $(`#answers`).append(`<h2 class="choices" id="choice-one">${questionBank[currentQuestion].answers.c}</h2>`);
         $(`#answers`).append(`<h2 class="choices" id="choice-one">${questionBank[currentQuestion].answers.d}</h2>`);
-        $(`#current-image`).attr(`src`, questionBank[currentQuestion.picture]); 
+        $(`#current-image`).attr(`src`, questionBank[currentQuestion].picture);
+        currentQuestion++; 
     };
     generateQuestion();
+    
+    
+    
 
 
 
@@ -166,10 +176,8 @@ $(document).ready(function() {
 
 
 
-
-
-
-
+    // // Calls the newGame function when the button is clicked
+    // newGameButton.addEventListener('click', generateQuestion);
 
 
 
