@@ -12,8 +12,8 @@ $(document).ready(function() {
             },
             correctAnswer: `b`,
             rightAnswerText: ``,
-            dumbAnswerText: ``,
-            picture: `../images/civil-war.jpg`
+            dumbAnswerText: `He may have been old when he entered office, but Reagan wasn't THAT old...`,
+            picture: `assets/images/civil-war.jpg`
         },
         {
             question: `Which leader, shown below, advocated non-violent resistance to the British presence in India?`,
@@ -25,8 +25,8 @@ $(document).ready(function() {
             },
             correctAnswer: `c`,
             rightAnswerText: ``,
-            dumbAnswerText: ``,
-            picture: `../images/indian-leader.jpg`
+            dumbAnswerText: `Wow...gonna start calling you the "Master of None"...`,
+            picture: `assets/images/indian-leader.jpg`
         },
         {
             question: `In 1964, this band famously appeared on the Ed Sullivan Show for the first time.`,
@@ -38,8 +38,8 @@ $(document).ready(function() {
             },
             correctAnswer: `d`,
             rightAnswerText: ``,
-            dumbAnswerText: ``,
-            picture: `../images/ed-sullivan.jpg`
+            dumbAnswerText: `You're off by about 45 years...although The Beatles were a boy band!`,
+            picture: `assets/images/ed-sullivan.jpg`
         },
         {
             question: `After spending 27 years in prison, Nelson Mandela was released in 1990, and went on to be elected president of which country?`,
@@ -51,8 +51,8 @@ $(document).ready(function() {
             },
             correctAnswer: `a`,
             rightAnswerText: ``,
-            dumbAnswerText: ``,
-            picture: `../images/freedom.jpg`
+            dumbAnswerText: `Canada's leaders have all been way too polite to end up in prison...`,
+            picture: `assets/images/freedom.jpg`
         },
         {
             question: `The 2000 U.S. presidential election was plagued by issues with ballots in which U.S. state?`,
@@ -64,8 +64,8 @@ $(document).ready(function() {
             },
             correctAnswer: `c`,
             rightAnswerText: ``,
-            dumbAnswerText: ``,
-            picture: `../images/hanging-chad.jpg`
+            dumbAnswerText: `Not even close...but it's fun to wonder who Fidel would have supported - Bush or Gore?`,
+            picture: `assets/images/hanging-chad.jpg`
         },
         {
             question: `At a press conference in 1991, this famous NBA player announced he had tested positive for HIV.`,
@@ -77,8 +77,8 @@ $(document).ready(function() {
             },
             correctAnswer: `c`,
             rightAnswerText: ``,
-            dumbAnswerText: ``,
-            picture: `../images/announcement.jpg`
+            dumbAnswerText: `Um, not quite...King James was 7 years old in 1991.`,
+            picture: `assets/images/announcement.jpg`
         },
         {
             question: `Who is nightclub owner Jack Ruby (back to the camera) seen firing at in the image below?`,
@@ -90,8 +90,8 @@ $(document).ready(function() {
             },
             correctAnswer: `a`,
             rightAnswerText: ``,
-            dumbAnswerText: ``,
-            picture: `../images/jack-ruby.jpg`
+            dumbAnswerText: `Just because the picture's in black and white doesn't mean it's from the 1920s...`,
+            picture: `assets/images/jack-ruby.jpg`
         },
         {
             question: `Near the end of World War II, Winston Churchill, Franklin Delano Roosevelt, and Joseph Stalin met to discuss post-war issues at the __________.`,
@@ -103,8 +103,8 @@ $(document).ready(function() {
             },
             correctAnswer: `d`,
             rightAnswerText: ``,
-            dumbAnswerText: ``,
-            picture: `../images/big-three.jpg`
+            dumbAnswerText: `Nope - the Paris Climate Agreement was a huge success - until President Trump thought it was dumb...`,
+            picture: `assets/images/big-three.jpg`
         },
         {
             question: `Which African dicator was in power for 42 years, until his overthrow, capture, and death in 2011?`,
@@ -116,8 +116,8 @@ $(document).ready(function() {
             },
             correctAnswer: `b`,
             rightAnswerText: ``,
-            dumbAnswerText: ``,
-            picture: `../images/sunglasses.jpg`
+            dumbAnswerText: `How about you lay off the conspiracy theory websites for a little while, huh?`,
+            picture: `assets/images/sunglasses.jpg`
         },
         {
             question: `The military response to protests in which Asian country led to the iconic photograph shown below?`,
@@ -129,12 +129,12 @@ $(document).ready(function() {
             },
             correctAnswer: `a`,
             rightAnswerText: ``,
-            dumbAnswerText: ``,
-            picture: `../images/tank-man.jpg`
+            dumbAnswerText: `I know you didn't seriously pick a city as a country, did you??`,
+            picture: `assets/images/tank-man.jpg`
         },
     ];
 
-
+    let currentQuestion = 0;
 
     // FUNCTIONS
     // ==================================================================================
@@ -143,6 +143,16 @@ $(document).ready(function() {
 
     }, 30000);
 
+    let generateQuestion = function(index) {
+        $(`#question`).text(questionBank[currentQuestion].question);
+        currentQuestion++;
+        $(`#answers`).append(`<h2 class="choices" id="choice-one">${questionBank[currentQuestion].answers.a}</h2>`);
+        $(`#answers`).append(`<h2 class="choices" id="choice-one">${questionBank[currentQuestion].answers.b}</h2>`);
+        $(`#answers`).append(`<h2 class="choices" id="choice-one">${questionBank[currentQuestion].answers.c}</h2>`);
+        $(`#answers`).append(`<h2 class="choices" id="choice-one">${questionBank[currentQuestion].answers.d}</h2>`);
+        $(`#current-image`).attr(`src`, questionBank[currentQuestion.picture]); 
+    };
+    generateQuestion();
 
 
 
