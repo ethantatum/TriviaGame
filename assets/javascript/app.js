@@ -181,16 +181,24 @@ $(document).ready(function() {
     function generateQuestion(index) {
         thirty();
         $(`#question`).text(questionBank[currentQuestion].question);
-        $(`#answers`).append(`<input type="radio" name="choices" value="a">${questionBank[currentQuestion].answers.a}<br>`);
-        $(`#answers`).append(`<input type="radio" name="choices" value="b">${questionBank[currentQuestion].answers.b}<br>`);
-        $(`#answers`).append(`<input type="radio" name="choices" value="c">${questionBank[currentQuestion].answers.c}<br>`);
-        $(`#answers`).append(`<input type="radio" name="choices" value="d">${questionBank[currentQuestion].answers.d}<br>`);
+        $(`#answers`).append(`<input type="radio" name="choices" value="a" id="a">${questionBank[currentQuestion].answers.a}<br>`);
+        $(`#answers`).append(`<input type="radio" name="choices" value="b" id="b">${questionBank[currentQuestion].answers.b}<br>`);
+        $(`#answers`).append(`<input type="radio" name="choices" value="c" id="c">${questionBank[currentQuestion].answers.c}<br>`);
+        $(`#answers`).append(`<input type="radio" name="choices" value="d" id="d">${questionBank[currentQuestion].answers.d}<br>`);
         $(`#current-image`).attr(`src`, questionBank[currentQuestion].picture);
         let goodAnswer = questionBank[currentQuestion].correctAnswer;
         console.log(goodAnswer);
+        $(`input[type=radio]`).click(function() {
+            let userGuess = $(`input[name=choices]:checked`).val();
+            console.log(userGuess);
+            if(userGuess === goodAnswer) {
+                alert(`You got it!`);
+            }
+        })
+        }
         
         currentQuestion++; 
-    }
+})
     
     
     
@@ -222,4 +230,3 @@ $(document).ready(function() {
 
 
 
-});
