@@ -138,7 +138,10 @@ $(document).ready(function() {
     let currentQuestion = 0;
     let rightAnswers = 0;
     let wrongAnswers = 0;
-
+    let audio = new Audio("evil-laugh.mp3");
+    let number = 31;
+    let intervalId;
+    
     // FUNCTIONS
     // ==================================================================================
     $(`#new-game`).on(`click`, newGame);
@@ -146,21 +149,48 @@ $(document).ready(function() {
     
     function newGame() {
         $(`#new-game`).css("display", "none")
+        audio.play();
         generateQuestion();
     }
-    const thirtySeconds = setTimeout(function() {
-        
-    }, 30000);
+    
+    function thirty() {
+        intervalId = setInterval(decrement, 1000);
+    }
+    
+    function decrement() {
+        number--;
+        $(`#time-remaining`).html(`Seconds remaining: ${number}`);
+        if(number ===-1) {
+            stop();
+            alert(`Time's up!`);
+            clearAnswers();
+            generateQuestion();
+        }
+    }
+    
+    function stop() {
+        clearInterval(intervalId);
+        number = 31;
+    }
+    
+    function clearAnswers() {
+        $(`#answers`).html(``);
+    }
+    
     
     function generateQuestion(index) {
+        thirty();
         $(`#question`).text(questionBank[currentQuestion].question);
         $(`#answers`).append(`<input type="radio" name="choices" value="a">${questionBank[currentQuestion].answers.a}<br>`);
         $(`#answers`).append(`<input type="radio" name="choices" value="b">${questionBank[currentQuestion].answers.b}<br>`);
         $(`#answers`).append(`<input type="radio" name="choices" value="c">${questionBank[currentQuestion].answers.c}<br>`);
         $(`#answers`).append(`<input type="radio" name="choices" value="d">${questionBank[currentQuestion].answers.d}<br>`);
         $(`#current-image`).attr(`src`, questionBank[currentQuestion].picture);
+        let goodAnswer = questionBank[currentQuestion].correctAnswer;
+        console.log(goodAnswer);
+        
         currentQuestion++; 
-    };
+    }
     
     
     
