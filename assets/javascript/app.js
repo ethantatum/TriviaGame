@@ -209,7 +209,16 @@ $(document).ready(function() {
         console.log(wrongAnswers);
     }
 
+    function endScreen() {
+        $(`#time-remaining`).text(`Correct Answers: ${rightAnswers}`);
+        $(`#question`).text(`Wrong Answers: ${wrongAnswers}`);
+        $(`#current-image`).attr(`src`, `assets/images/fire-laugh.gif`);
+    }
+
     function generateQuestion(index) {
+        if(rightAnswers + wrongAnswers === 10) {
+            endScreen();
+        } else {
         fifeteen();
         $(`#question`).text(questionBank[currentQuestion].question);
         $(`#answers`).append(`<input type="radio" name="choices" value="a" id="a">${questionBank[currentQuestion].answers.a}<br>`);
@@ -234,14 +243,14 @@ $(document).ready(function() {
                     wrongAnswer();
                 }
             })
+        }
         
     }
         
 
 })
     
-    
-    
+        
 
 
 
