@@ -12,6 +12,7 @@ $(document).ready(function() {
             d: `Thomas Jefferson`
             },
             correctAnswer: `b`,
+            dumbAnswer: `c`,
             rightAnswerText: ``,
             dumbAnswerText: `He may have been old when he entered office, but Reagan wasn't THAT old...`,
             picture: `assets/images/civil-war.jpg`
@@ -25,6 +26,7 @@ $(document).ready(function() {
             d: `Indira Gandhi`
             },
             correctAnswer: `c`,
+            dumbAnswer: `a`,
             rightAnswerText: ``,
             dumbAnswerText: `Wow...gonna start calling you the "Master of None"...`,
             picture: `assets/images/indian-leader.jpg`
@@ -38,6 +40,7 @@ $(document).ready(function() {
             d: `The Beatles`
             },
             correctAnswer: `d`,
+            dumbAnswer: `c`,
             rightAnswerText: ``,
             dumbAnswerText: `You're off by about 45 years...although The Beatles WERE a boy band!`,
             picture: `assets/images/ed-sullivan.jpg`
@@ -51,6 +54,7 @@ $(document).ready(function() {
             d: `Canada`
             },
             correctAnswer: `a`,
+            dumbAnswer: `d`,
             rightAnswerText: ``,
             dumbAnswerText: `Canada's leaders have all been way too polite to end up in prison...`,
             picture: `assets/images/freedom.jpg`
@@ -64,8 +68,9 @@ $(document).ready(function() {
             d: `Minnesota`
             },
             correctAnswer: `c`,
+            dumbAnswer: `a`,
             rightAnswerText: ``,
-            dumbAnswerText: `Not even close...but it's fun to wonder who Fidel would have supported - Bush or Gore?`,
+            dumbAnswerText: `Not even close...but it's fun to wonder who Castro would have supported - Bush or Gore?`,
             picture: `assets/images/hanging-chad.jpg`
         },
         {
@@ -77,6 +82,7 @@ $(document).ready(function() {
             d: `Dominique Wilkins`
             },
             correctAnswer: `c`,
+            dumbAnswer: `b`,
             rightAnswerText: ``,
             dumbAnswerText: `Um, not quite...King James was 7 years old in 1991.`,
             picture: `assets/images/announcement.jpg`
@@ -90,6 +96,7 @@ $(document).ready(function() {
             d: `Charlie Chaplin`
             },
             correctAnswer: `a`,
+            dumbAnswer: `d`,
             rightAnswerText: ``,
             dumbAnswerText: `Just because the picture's in black and white doesn't mean it's from the 1920s...`,
             picture: `assets/images/jack-ruby.jpg`
@@ -103,6 +110,7 @@ $(document).ready(function() {
             d: `Yalta Conference`
             },
             correctAnswer: `d`,
+            dumbAnswer: `a`,
             rightAnswerText: ``,
             dumbAnswerText: `Nope - the Paris Climate Agreement was a huge success - until President Trump thought it was dumb...`,
             picture: `assets/images/big-three.jpg`
@@ -116,8 +124,9 @@ $(document).ready(function() {
             d: `Idi Amin`
             },
             correctAnswer: `b`,
+            dumbAnswer: `c`,
             rightAnswerText: ``,
-            dumbAnswerText: `How about you lay off the conspiracy theory websites for a little while, huh?`,
+            dumbAnswerText: `I'm gonna need you lay off the conspiracy theory websites for a little while...`,
             picture: `assets/images/sunglasses.jpg`
         },
         {
@@ -129,6 +138,7 @@ $(document).ready(function() {
             d: `Myanmar`
             },
             correctAnswer: `a`,
+            dumbAnswer: `c`,
             rightAnswerText: ``,
             dumbAnswerText: `I know you didn't seriously pick a city as a country, did you??`,
             picture: `assets/images/tank-man.jpg`
@@ -138,8 +148,8 @@ $(document).ready(function() {
     let currentQuestion = 0;
     let rightAnswers = 0;
     let wrongAnswers = 0;
-    let audio = new Audio("evil-laugh.mp3");
-    let number = 31;
+    let audio = new Audio("assets/audio/evil-laugh.mp3");
+    let number = 16;
     let intervalId;
     
     // FUNCTIONS
@@ -153,33 +163,54 @@ $(document).ready(function() {
         generateQuestion();
     }
     
-    function thirty() {
+    function fifeteen() {
         intervalId = setInterval(decrement, 1000);
     }
     
     function decrement() {
         number--;
         $(`#time-remaining`).html(`Seconds remaining: ${number}`);
-        if(number ===-1) {
+        if(number === 0) {
             stop();
+            wrongAnswers++;
             alert(`Time's up!`);
             clearAnswers();
+            currentQuestion++;
             generateQuestion();
         }
     }
     
     function stop() {
         clearInterval(intervalId);
-        number = 31;
+        number = 16;
     }
     
     function clearAnswers() {
         $(`#answers`).html(``);
     }
     
-    
+    function rightAnswer() {
+        stop();
+        rightAnswers++;    
+        clearAnswers();
+        currentQuestion++;
+        generateQuestion();
+        console.log(rightAnswers);
+        console.log(wrongAnswers);
+    }
+
+    function wrongAnswer() {
+        stop();
+        wrongAnswers++;
+        clearAnswers();
+        currentQuestion++;
+        generateQuestion();
+        console.log(rightAnswers);
+        console.log(wrongAnswers);
+    }
+
     function generateQuestion(index) {
-        thirty();
+        fifeteen();
         $(`#question`).text(questionBank[currentQuestion].question);
         $(`#answers`).append(`<input type="radio" name="choices" value="a" id="a">${questionBank[currentQuestion].answers.a}<br>`);
         $(`#answers`).append(`<input type="radio" name="choices" value="b" id="b">${questionBank[currentQuestion].answers.b}<br>`);
@@ -187,17 +218,26 @@ $(document).ready(function() {
         $(`#answers`).append(`<input type="radio" name="choices" value="d" id="d">${questionBank[currentQuestion].answers.d}<br>`);
         $(`#current-image`).attr(`src`, questionBank[currentQuestion].picture);
         let goodAnswer = questionBank[currentQuestion].correctAnswer;
+        let dumbAnswer = questionBank[currentQuestion].dumbAnswer;
         console.log(goodAnswer);
-        $(`input[type=radio]`).click(function() {
-            let userGuess = $(`input[name=choices]:checked`).val();
-            console.log(userGuess);
-            if(userGuess === goodAnswer) {
-                alert(`You got it!`);
-            }
-        })
-        }
+            $(`input[type=radio]`).click(function() {
+                let userGuess = $(`input[name=choices]:checked`).val();
+                console.log(userGuess);
+                if(userGuess === goodAnswer) {
+                    alert(`You got it!`);
+                    rightAnswer();
+                } else if(userGuess === dumbAnswer) {
+                    alert(`${questionBank[currentQuestion].dumbAnswerText}`);
+                    wrongAnswer();
+                } else {
+                    alert(`Nope!`);
+                    wrongAnswer();
+                }
+            })
         
-        currentQuestion++; 
+    }
+        
+
 })
     
     
