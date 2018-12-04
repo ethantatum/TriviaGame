@@ -74,7 +74,7 @@ $(document).ready(function() {
             picture: `assets/images/hanging-chad.jpg`
         },
         {
-            question: `At a press conference in 1991, this famous NBA player announced he had tested positive for HIV.`,
+            question: `At a press conference in 1991, this NBA player announced he had tested positive for HIV.`,
             answers: {
             a: `Michael Jordan`,
             b: `Lebron James`,
@@ -149,6 +149,7 @@ $(document).ready(function() {
     let rightAnswers = 0;
     let wrongAnswers = 0;
     let audio = new Audio("assets/audio/evil-laugh.mp3");
+    let audioHell = new Audio("assets/audio/in-hell.mp3");
     let number = 15;
     let intervalId;
 
@@ -202,24 +203,20 @@ $(document).ready(function() {
         clearAnswers();
         currentQuestion++;
         generateQuestion();
-        console.log(rightAnswers);
-        console.log(wrongAnswers);
     }
 
     function wrongAnswer() {
-        stop();
         wrongAnswers++;
         clearAnswers();
         currentQuestion++;
         generateQuestion();
-        console.log(rightAnswers);
-        console.log(wrongAnswers);
     }
 
     function endScreen() {
         $(`#time-remaining`).text(`Correct Answers: ${rightAnswers}`);
         $(`#question`).text(`Wrong Answers: ${wrongAnswers}`);
         $(`#current-image`).attr(`src`, `assets/images/fire-laugh.gif`);
+        audioHell.play();
         $(`#new-game`)
                 .text(`Click here if you dare to try again...`)
                 .css("display", "block")
@@ -234,10 +231,10 @@ $(document).ready(function() {
         $(`#time-remaining`).html(`Seconds remaining: ${number}`);
         fifteen();
         $(`#question`).text(questionBank[currentQuestion].question);
-        $(`#answers`).append(`<input type="radio" name="choices" value="a" id="a">${questionBank[currentQuestion].answers.a}<br>`);
-        $(`#answers`).append(`<input type="radio" name="choices" value="b" id="b">${questionBank[currentQuestion].answers.b}<br>`);
-        $(`#answers`).append(`<input type="radio" name="choices" value="c" id="c">${questionBank[currentQuestion].answers.c}<br>`);
-        $(`#answers`).append(`<input type="radio" name="choices" value="d" id="d">${questionBank[currentQuestion].answers.d}<br>`);
+        $(`#answers`).append(`<input type="radio" name="choices" value="a" id="a"> ${questionBank[currentQuestion].answers.a} `);
+        $(`#answers`).append(`<input type="radio" name="choices" value="b" id="b"> ${questionBank[currentQuestion].answers.b} `);
+        $(`#answers`).append(`<input type="radio" name="choices" value="c" id="c"> ${questionBank[currentQuestion].answers.c} `);
+        $(`#answers`).append(`<input type="radio" name="choices" value="d" id="d"> ${questionBank[currentQuestion].answers.d} `);
         $(`#current-image`).attr(`src`, questionBank[currentQuestion].picture);
         let goodAnswer = questionBank[currentQuestion].correctAnswer;
         let dumbAnswer = questionBank[currentQuestion].dumbAnswer;
@@ -250,13 +247,19 @@ $(document).ready(function() {
                     stop();
                     setTimeout(function() {
                         rightAnswer();
-                    }, 2000);
+                    }, 3000);
                 } else if(userGuess === dumbAnswer) {
-                    alert(`${questionBank[currentQuestion].dumbAnswerText}`);
-                    wrongAnswer();
+                    $(`#response`).html(`${questionBank[currentQuestion].dumbAnswerText}`);
+                    stop();
+                    setTimeout(function() {
+                        wrongAnswer();
+                    }, 5000);
                 } else {
-                    alert(`Nope!`);
-                    wrongAnswer();
+                    $(`#response`).html(`Nope!`);
+                    stop();
+                    setTimeout(function() {
+                        wrongAnswer();
+                    }, 2000);
                 }
             })
         }

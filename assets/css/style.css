@@ -12,7 +12,23 @@ h1 {
     font-size: 76px;
     text-shadow: 0 1px 5px red;
 }
+
+#response {
+    font-size: 30px;
+    color: black;
+    text-shadow: 0 0 2px red;
+}
+
+#answers {
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
 .fa-fire {
     font-size: 16px;
     letter-spacing: 4px;
 }
+
+/* .img-fluid {
+    width: 65%;
+} */
