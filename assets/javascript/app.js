@@ -149,7 +149,7 @@ $(document).ready(function() {
     let rightAnswers = 0;
     let wrongAnswers = 0;
     let audio = new Audio("assets/audio/evil-laugh.mp3");
-    let number = 16;
+    let number = 15;
     let intervalId;
 
     
@@ -164,11 +164,8 @@ $(document).ready(function() {
         generateQuestion();
     }
     
-    //let fiver = setTimeout(function() {
-    //    fiveSeconds();
-    //  }, 5000);
 
-    function fifeteen() {
+    function fifteen() {
         intervalId = setInterval(decrement, 1000);
     }
     
@@ -179,15 +176,17 @@ $(document).ready(function() {
             stop();
             wrongAnswers++;
             $(`#response`).html(`Refuse to click anything...interesting strategy!`);
-            clearAnswers();
-            currentQuestion++;
-            generateQuestion();
+            setTimeout(function() {
+                clearAnswers();
+                currentQuestion++;
+                generateQuestion();
+            }, 5000);
         }
     }
     
     function stop() {
         clearInterval(intervalId);
-        number = 16;
+        number = 15;
     }
     
     function clearAnswers() {
@@ -199,7 +198,6 @@ $(document).ready(function() {
     }
     
     function rightAnswer() {
-        stop();
         rightAnswers++;    
         clearAnswers();
         currentQuestion++;
@@ -233,7 +231,8 @@ $(document).ready(function() {
             endScreen();
         } else {
         clearResponse();
-        fifeteen();
+        $(`#time-remaining`).html(`Seconds remaining: ${number}`);
+        fifteen();
         $(`#question`).text(questionBank[currentQuestion].question);
         $(`#answers`).append(`<input type="radio" name="choices" value="a" id="a">${questionBank[currentQuestion].answers.a}<br>`);
         $(`#answers`).append(`<input type="radio" name="choices" value="b" id="b">${questionBank[currentQuestion].answers.b}<br>`);
@@ -247,8 +246,11 @@ $(document).ready(function() {
                 let userGuess = $(`input[name=choices]:checked`).val();
                 console.log(userGuess);
                 if(userGuess === goodAnswer) {
-                    alert(`You got it!`);
-                    rightAnswer();
+                    $(`#response`).html(`You got it!`);
+                    stop();
+                    setTimeout(function() {
+                        rightAnswer();
+                    }, 2000);
                 } else if(userGuess === dumbAnswer) {
                     alert(`${questionBank[currentQuestion].dumbAnswerText}`);
                     wrongAnswer();
