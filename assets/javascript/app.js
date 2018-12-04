@@ -159,7 +159,7 @@ $(document).ready(function() {
     
     function newGame() {
         $(`#new-game`).css("display", "none")
-        audio.play();
+        //audio.play();
         generateQuestion();
     }
     
@@ -173,7 +173,7 @@ $(document).ready(function() {
         if(number === 0) {
             stop();
             wrongAnswers++;
-            alert(`Time's up!`);
+            alert(`Refuse to click anything...interesting strategy!`);
             clearAnswers();
             currentQuestion++;
             generateQuestion();
@@ -213,6 +213,10 @@ $(document).ready(function() {
         $(`#time-remaining`).text(`Correct Answers: ${rightAnswers}`);
         $(`#question`).text(`Wrong Answers: ${wrongAnswers}`);
         $(`#current-image`).attr(`src`, `assets/images/fire-laugh.gif`);
+        $(`#new-game`)
+                .text(`Click here if you dare to try again...`)
+                .css("display", "block")
+                .attr("onClick", "window.location.reload()");
     }
 
     function generateQuestion(index) {
