@@ -151,6 +151,7 @@ $(document).ready(function() {
     let audio = new Audio("assets/audio/evil-laugh.mp3");
     let number = 16;
     let intervalId;
+
     
     // FUNCTIONS
     // ==================================================================================
@@ -159,10 +160,14 @@ $(document).ready(function() {
     
     function newGame() {
         $(`#new-game`).css("display", "none")
-        //audio.play();
+        audio.play();
         generateQuestion();
     }
     
+    //let fiver = setTimeout(function() {
+    //    fiveSeconds();
+    //  }, 5000);
+
     function fifeteen() {
         intervalId = setInterval(decrement, 1000);
     }
@@ -173,7 +178,7 @@ $(document).ready(function() {
         if(number === 0) {
             stop();
             wrongAnswers++;
-            alert(`Refuse to click anything...interesting strategy!`);
+            $(`#response`).html(`Refuse to click anything...interesting strategy!`);
             clearAnswers();
             currentQuestion++;
             generateQuestion();
@@ -187,6 +192,10 @@ $(document).ready(function() {
     
     function clearAnswers() {
         $(`#answers`).html(``);
+    }
+
+    function clearResponse() {
+        $(`#response`).html(``);
     }
     
     function rightAnswer() {
@@ -223,6 +232,7 @@ $(document).ready(function() {
         if(rightAnswers + wrongAnswers === 10) {
             endScreen();
         } else {
+        clearResponse();
         fifeteen();
         $(`#question`).text(questionBank[currentQuestion].question);
         $(`#answers`).append(`<input type="radio" name="choices" value="a" id="a">${questionBank[currentQuestion].answers.a}<br>`);
