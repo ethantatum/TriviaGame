@@ -228,16 +228,18 @@ $(document).ready(function() {
 
     function generateQuestion(index) {
         if(rightAnswers + wrongAnswers === 10) {
+            stop();
+            clearResponse();
             endScreen();
         } else {
         clearResponse();
         $(`#time-remaining`).html(`Seconds remaining: ${number}`);
         fifteen();
         $(`#question`).text(questionBank[currentQuestion].question);
-        $(`#answers`).append(`<input type="radio" name="choices" value="a" id="a"> ${questionBank[currentQuestion].answers.a} `);
-        $(`#answers`).append(`<input type="radio" name="choices" value="b" id="b"> ${questionBank[currentQuestion].answers.b} `);
-        $(`#answers`).append(`<input type="radio" name="choices" value="c" id="c"> ${questionBank[currentQuestion].answers.c} `);
-        $(`#answers`).append(`<input type="radio" name="choices" value="d" id="d"> ${questionBank[currentQuestion].answers.d} `);
+        $(`#answers`).append(`<input type="radio" name="choices" value="a" id="a"> ${questionBank[currentQuestion].answers.a}<br>`);
+        $(`#answers`).append(`<input type="radio" name="choices" value="b" id="b"> ${questionBank[currentQuestion].answers.b}<br>`);
+        $(`#answers`).append(`<input type="radio" name="choices" value="c" id="c"> ${questionBank[currentQuestion].answers.c}<br>`);
+        $(`#answers`).append(`<input type="radio" name="choices" value="d" id="d"> ${questionBank[currentQuestion].answers.d}`);
         $(`#current-image`).attr(`src`, questionBank[currentQuestion].picture);
         let goodAnswer = questionBank[currentQuestion].correctAnswer;
         let dumbAnswer = questionBank[currentQuestion].dumbAnswer;
@@ -250,19 +252,19 @@ $(document).ready(function() {
                     stop();
                     setTimeout(function() {
                         rightAnswer();
-                    }, 3000);
+                    }, 1500);
                 } else if(userGuess === dumbAnswer) {
                     $(`#response`).html(`${questionBank[currentQuestion].dumbAnswerText}`);
                     stop();
                     setTimeout(function() {
                         wrongAnswer();
-                    }, 5000);
+                    }, 3500);
                 } else {
                     $(`#response`).html(`Nope! The right answer was ${questionBank[currentQuestion].rightAnswerText}.`);
                     stop();
                     setTimeout(function() {
                         wrongAnswer();
-                    }, 3000);
+                    }, 2500);
                 }
             })
         }
