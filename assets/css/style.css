@@ -29,6 +29,6 @@ h1 {
     letter-spacing: 4px;
 }
 
-/* .img-fluid {
-    width: 65%;
-} */
+.fixed-bottom {
+    visibility: hidden;
+}

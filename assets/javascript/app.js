@@ -156,6 +156,12 @@ $(document).ready(function() {
     
     // FUNCTIONS
     // ==================================================================================
+    $(`.fixed-bottom`).hover(function() {
+        $(this).css(`visibility`, `visible`);
+    }, function() {
+        $(this).css(`visibility`, `hidden`);
+    });
+    
     $(`#new-game`).on(`click`, newGame);
     
     
@@ -266,7 +272,7 @@ $(document).ready(function() {
         
     }
         
-
+    
 })
     
         
