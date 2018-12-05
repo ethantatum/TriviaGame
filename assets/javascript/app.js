@@ -13,7 +13,7 @@ $(document).ready(function() {
             },
             correctAnswer: `b`,
             dumbAnswer: `c`,
-            rightAnswerText: ``,
+            rightAnswerText: `Abraham Lincoln`,
             dumbAnswerText: `Reagan may have been old when he entered office, but he wasn't THAT old...`,
             picture: `assets/images/civil-war.jpg`
         },
@@ -27,7 +27,7 @@ $(document).ready(function() {
             },
             correctAnswer: `c`,
             dumbAnswer: `a`,
-            rightAnswerText: ``,
+            rightAnswerText: `Mahatma Gandhi`,
             dumbAnswerText: `Wow...gonna start calling you the "Master of None"...`,
             picture: `assets/images/indian-leader.jpg`
         },
@@ -41,7 +41,7 @@ $(document).ready(function() {
             },
             correctAnswer: `d`,
             dumbAnswer: `c`,
-            rightAnswerText: ``,
+            rightAnswerText: `The Beatles`,
             dumbAnswerText: `JT's got NOTHING on a young John Lennon!`,
             picture: `assets/images/ed-sullivan.jpg`
         },
@@ -55,7 +55,7 @@ $(document).ready(function() {
             },
             correctAnswer: `a`,
             dumbAnswer: `d`,
-            rightAnswerText: ``,
+            rightAnswerText: `South Africa`,
             dumbAnswerText: `Canada's leaders have all been way too polite to end up in prison...`,
             picture: `assets/images/freedom.jpg`
         },
@@ -69,7 +69,7 @@ $(document).ready(function() {
             },
             correctAnswer: `c`,
             dumbAnswer: `a`,
-            rightAnswerText: ``,
+            rightAnswerText: `Florida`,
             dumbAnswerText: `Not even close...Fidel didn't worry about pesky things like elections!`,
             picture: `assets/images/hanging-chad.jpg`
         },
@@ -83,7 +83,7 @@ $(document).ready(function() {
             },
             correctAnswer: `c`,
             dumbAnswer: `b`,
-            rightAnswerText: ``,
+            rightAnswerText: `Magic Johnson`,
             dumbAnswerText: `I certainly hope not - considering Lebron was 7 years old in 1991.`,
             picture: `assets/images/announcement.jpg`
         },
@@ -97,7 +97,7 @@ $(document).ready(function() {
             },
             correctAnswer: `a`,
             dumbAnswer: `d`,
-            rightAnswerText: ``,
+            rightAnswerText: `Lee Oswald`,
             dumbAnswerText: `Just because the picture's in black and white doesn't mean it's from the 1920s...`,
             picture: `assets/images/jack-ruby.jpg`
         },
@@ -111,7 +111,7 @@ $(document).ready(function() {
             },
             correctAnswer: `d`,
             dumbAnswer: `a`,
-            rightAnswerText: ``,
+            rightAnswerText: `Yalta Conference`,
             dumbAnswerText: `Nope - the Paris Climate Agreement was a huge success - until Trump thought it was stupid...`,
             picture: `assets/images/big-three.jpg`
         },
@@ -125,7 +125,7 @@ $(document).ready(function() {
             },
             correctAnswer: `b`,
             dumbAnswer: `c`,
-            rightAnswerText: ``,
+            rightAnswerText: `Muammar Gaddafi`,
             dumbAnswerText: `I'm gonna need you lay off the conspiracy theory websites for a little while...`,
             picture: `assets/images/sunglasses.jpg`
         },
@@ -139,7 +139,7 @@ $(document).ready(function() {
             },
             correctAnswer: `a`,
             dumbAnswer: `c`,
-            rightAnswerText: ``,
+            rightAnswerText: `China`,
             dumbAnswerText: `I know you didn't seriously pick a city as a country, did you??`,
             picture: `assets/images/tank-man.jpg`
         },
@@ -177,7 +177,7 @@ $(document).ready(function() {
         if(number === 0) {
             stop();
             wrongAnswers++;
-            $(`#response`).html(`Refuse to click anything...interesting strategy!`);
+            $(`#response`).html(`Refuse to click anything, huh? Interesting strategy!`);
             setTimeout(function() {
                 clearAnswers();
                 currentQuestion++;
@@ -215,7 +215,9 @@ $(document).ready(function() {
 
     function endScreen() {
         $(`#time-remaining`).text(`Correct Answers: ${rightAnswers}`);
-        $(`#question`).text(`Wrong Answers: ${wrongAnswers}`);
+        $(`#question`)
+                .text(`Wrong Answers: ${wrongAnswers}`)
+                .removeClass("bg-light");
         $(`#current-image`).attr(`src`, `assets/images/fire-laugh.gif`);
         audioHell.play();
         $(`#new-game`)
@@ -256,11 +258,11 @@ $(document).ready(function() {
                         wrongAnswer();
                     }, 5000);
                 } else {
-                    $(`#response`).html(`Nope!`);
+                    $(`#response`).html(`Nope! The right answer was ${questionBank[currentQuestion].rightAnswerText}.`);
                     stop();
                     setTimeout(function() {
                         wrongAnswer();
-                    }, 2000);
+                    }, 3000);
                 }
             })
         }
