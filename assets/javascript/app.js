@@ -14,7 +14,7 @@ $(document).ready(function() {
             correctAnswer: `b`,
             dumbAnswer: `c`,
             rightAnswerText: ``,
-            dumbAnswerText: `He may have been old when he entered office, but Reagan wasn't THAT old...`,
+            dumbAnswerText: `Reagan may have been old when he entered office, but he wasn't THAT old...`,
             picture: `assets/images/civil-war.jpg`
         },
         {
@@ -42,7 +42,7 @@ $(document).ready(function() {
             correctAnswer: `d`,
             dumbAnswer: `c`,
             rightAnswerText: ``,
-            dumbAnswerText: `You're off by about 45 years...although The Beatles WERE a boy band!`,
+            dumbAnswerText: `JT's got NOTHING on a young John Lennon!`,
             picture: `assets/images/ed-sullivan.jpg`
         },
         {
@@ -70,7 +70,7 @@ $(document).ready(function() {
             correctAnswer: `c`,
             dumbAnswer: `a`,
             rightAnswerText: ``,
-            dumbAnswerText: `Not even close...but it's fun to wonder who Castro would have supported - Bush or Gore?`,
+            dumbAnswerText: `Not even close...Fidel didn't worry about pesky things like elections!`,
             picture: `assets/images/hanging-chad.jpg`
         },
         {
@@ -84,7 +84,7 @@ $(document).ready(function() {
             correctAnswer: `c`,
             dumbAnswer: `b`,
             rightAnswerText: ``,
-            dumbAnswerText: `Um, not quite...King James was 7 years old in 1991.`,
+            dumbAnswerText: `I certainly hope not - considering Lebron was 7 years old in 1991.`,
             picture: `assets/images/announcement.jpg`
         },
         {
@@ -102,7 +102,7 @@ $(document).ready(function() {
             picture: `assets/images/jack-ruby.jpg`
         },
         {
-            question: `Near the end of World War II, Winston Churchill, Franklin Delano Roosevelt, and Joseph Stalin met to discuss post-war issues at the __________.`,
+            question: `Near the end of World War II, Churchill, FDR, and Stalin met to discuss post-war issues at the __________.`,
             answers: {
             a: `Paris Agreement`,
             b: `Potsdam Conference`,
@@ -112,7 +112,7 @@ $(document).ready(function() {
             correctAnswer: `d`,
             dumbAnswer: `a`,
             rightAnswerText: ``,
-            dumbAnswerText: `Nope - the Paris Climate Agreement was a huge success - until President Trump thought it was dumb...`,
+            dumbAnswerText: `Nope - the Paris Climate Agreement was a huge success - until Trump thought it was stupid...`,
             picture: `assets/images/big-three.jpg`
         },
         {
@@ -156,11 +156,6 @@ $(document).ready(function() {
     
     // FUNCTIONS
     // ==================================================================================
-    $(`.fixed-bottom`).hover(function() {
-        $(this).css(`visibility`, `visible`);
-    }, function() {
-        $(this).css(`visibility`, `hidden`);
-    });
     
     $(`#new-game`).on(`click`, newGame);
     
