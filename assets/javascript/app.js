@@ -150,6 +150,7 @@ $(document).ready(function() {
     let wrongAnswers = 0;
     let audio = new Audio("assets/audio/evil-laugh.mp3");
     let audioHell = new Audio("assets/audio/in-hell.mp3");
+    let audioBrilliant = new Audio("assets/audio/guinness.wav")
     let number = 15;
     let intervalId;
 
@@ -218,13 +219,19 @@ $(document).ready(function() {
         $(`#question`)
                 .text(`Wrong Answers: ${wrongAnswers}`)
                 .removeClass("bg-light");
-        $(`#current-image`).attr(`src`, `assets/images/fire-laugh.gif`);
-        audioHell.play();
         $(`#new-game`)
                 .text(`Click here if you dare to try again...`)
                 .css("display", "block")
                 .attr("onClick", "window.location.reload()");
-    }
+            if(rightAnswers <= 5) {
+                $(`#current-image`).attr(`src`, `assets/images/fire-laugh.gif`);
+                audioHell.play();
+            } else {
+                $(`#current-image`).attr(`src`, `assets/images/brilliant.gif`);
+                audioBrilliant.play();
+            }
+
+        }
 
     function generateQuestion(index) {
         if(rightAnswers + wrongAnswers === 10) {
