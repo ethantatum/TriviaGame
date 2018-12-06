@@ -2,6 +2,7 @@ $(document).ready(function() {
     // VARIABLES
     // ==================================================================================
     
+    // This array contains multiple objects that house questions, answers, correct answers, responses to the user, and images
     const questionBank = [
         {
             question: `Which U.S. president was in office for the majority of the Civil War?`,
@@ -158,20 +159,22 @@ $(document).ready(function() {
     // FUNCTIONS
     // ==================================================================================
     
+    // Starts game when button is clicked
     $(`#new-game`).on(`click`, newGame);
     
-    
+    // Removes the start button, plays the evil laugh audio, and populates first question from array
     function newGame() {
         $(`#new-game`).css("display", "none")
         audio.play();
         generateQuestion();
     }
     
-
+    // Sets an interval to count down every second
     function fifteen() {
         intervalId = setInterval(decrement, 1000);
     }
     
+    // Decreases the number by one every second, writes the timer to the browser, and logs a wrong answer and advances to next question if time runs out
     function decrement() {
         number--;
         $(`#time-remaining`).html(`Seconds remaining: ${number}`);
@@ -187,19 +190,23 @@ $(document).ready(function() {
         }
     }
     
+    // Clears our count down interval and resets the time number
     function stop() {
         clearInterval(intervalId);
         number = 15;
     }
     
+    // Clears out the the old answers so new ones can be populated
     function clearAnswers() {
         $(`#answers`).html(``);
     }
 
+    // Clears out the response to user so a new one can be populated after the new question
     function clearResponse() {
         $(`#response`).html(``);
     }
     
+    // Handles if the user selects the correct answer (adds to wins, advances to next question in array)
     function rightAnswer() {
         rightAnswers++;    
         clearAnswers();
@@ -207,6 +214,7 @@ $(document).ready(function() {
         generateQuestion();
     }
 
+    // Handles if the user selects the wrong answer (add to losses, advances to next question in array)
     function wrongAnswer() {
         wrongAnswers++;
         clearAnswers();
@@ -214,6 +222,9 @@ $(document).ready(function() {
         generateQuestion();
     }
 
+    // Runs when all the questions have been completed, changes timer div to right answers, question div to wrong answers. 
+    // One audio clip and gif display if wins are 6 or greater, the other if wins are less than 6
+    // New game button text prompts to play again, on click page is refreshed
     function endScreen() {
         $(`#time-remaining`).text(`Correct Answers: ${rightAnswers}`);
         $(`#question`)
@@ -232,7 +243,8 @@ $(document).ready(function() {
             }
 
         }
-
+    
+    // First checks to see if all questions have been complete; if not, inputs questions, answers, and responses       
     function generateQuestion(index) {
         if(rightAnswers + wrongAnswers === 10) {
             stop();
