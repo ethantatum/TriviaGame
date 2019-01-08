@@ -1,5 +1,7 @@
 # TriviaGame
 
+[Click here if you're ready for the challenge!](https://ethantatum.github.io/TriviaGame/ "Hellish History Trivia")
+
 ## Timed Questions
 ### This game shows only one question until the player answers it or their time runs out.
 ### If the player selects the correct answer, a message pops up congratulating them for choosing the right option. After a few seconds,  the next question displays.
